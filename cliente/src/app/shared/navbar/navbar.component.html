@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <img
+            src="https://scontent.fzag5-1.fna.fbcdn.net/v/t39.30808-6/326747442_487456640130579_1976139363330972179_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yhSz0xSaHLoQ7kNvwGDe4dt&_nc_oc=AdkuSG4-GDy87h3leQVWsaNyMLFxFqsHcZCYVCxRBV_W3EmJgJEXxDW7IUG-Js8QS0g&_nc_zt=23&_nc_ht=scontent.fzag5-1.fna&_nc_gid=zaeU44W5xdDZQChe-47iNg&oh=00_AfHmdqts0BbeSt3HWNaTmkncClhGU4FXotbn8yqGnwzuuA&oe=68100941"
+            alt="Logo"
+            width="45"
+            class="d-inline-block align-text-top"
+        />
+        <a class="navbar-brand" routerLink="/">Riviera Rescue</a>
+        <div class="collapse navbar-collapse" *ngIf="isAuthenticated()">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/" routerLinkActive="active"
+                        >Inicio</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        routerLink="/mascotas"
+                        routerLinkActive="active"
+                        >Mascotas</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        routerLink="/adoptantes"
+                        routerLinkActive="active"
+                        >Adoptantes</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        routerLink="/adopciones"
+                        routerLinkActive="active"
+                        >Adopciones</a
+                    >
+                </li>
+            </ul>
+
+            <button class="btn btn-light" (click)="logout()">
+                Cerrar sesión
+            </button>
+        </div>
+    </div>
+</nav>

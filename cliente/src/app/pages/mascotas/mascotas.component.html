@@ -1,0 +1,68 @@
+<div class="container mt-5">
+    <h2>Mascotas registradas</h2>
+    <table class="table table-bordered table-striped mt-3" *ngIf="mascotas.length > 0">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Raza</th>
+          <th>Edad</th>
+          <th>Estado de Salud</th>
+          <th>Descripción</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mascota of mascotas">
+          <td>{{ mascota.id }}</td>
+          <td>{{ mascota.nombre }}</td>
+          <td>{{ mascota.especie }}</td>
+          <td>{{ mascota.raza }}</td>
+          <td>{{ mascota.edad }}</td>
+          <td>{{ mascota.estado_salud }}</td>
+          <td>{{ mascota.descripcion }}</td>
+          <td>
+            <div class="container d-flex">
+            <div class="row">
+            <button class="btn btn-primary col" (click)="deleteMascota(mascota.id)">Eliminar</button>
+            <button class="btn btn-secondary col" (click)="editMascota(mascota)">Editar</button>
+          </div>
+        </div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container mt-5">
+    <h2>{{newMascota.id ? 'Actualizar mascota' : 'Registrar nueva mascota' }}</h2>
+    <form (ngSubmit)="onSubmit()" #mascotaForm="ngForm">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" required [(ngModel)]="newMascota.nombre" name="nombre">
+      </div>
+      <div class="mb-3">
+        <label for="especie" class="form-label">Especie</label>
+        <input type="text" class="form-control" id="especie" required [(ngModel)]="newMascota.especie" name="especie">
+      </div>
+      <div class="mb-3">
+        <label for="raza" class="form-label">Raza</label>
+        <input type="text" class="form-control" id="raza" required [(ngModel)]="newMascota.raza" name="raza">
+      </div>
+      <div class="mb-3">
+        <label for="edad" class="form-label">Edad</label>
+        <input type="text" class="form-control" id="edad" required [(ngModel)]="newMascota.edad" name="edad">
+      </div>
+      <div class="mb-3">
+        <label for="estado_salud" class="form-label">Estado de Salud</label>
+        <input type="text" class="form-control" id="estado_salud" required [(ngModel)]="newMascota.estado_salud" name="estado_salud">
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" required [(ngModel)]="newMascota.descripcion" name="descripcion"></textarea>
+      </div>
+      <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{newMascota.id ? 'Actualizar' : 'Registrar'}}</button>
+    </div>
+  

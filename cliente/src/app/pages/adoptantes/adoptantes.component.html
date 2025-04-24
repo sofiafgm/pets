@@ -1,0 +1,114 @@
+<div class="container mt-5">
+    <h2>Adoptantes registradas</h2>
+    <table
+        class="table table-bordered table-striped mt-3"
+        *ngIf="adoptantes.length > 0"
+    >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Contacto</th>
+                <th>Historial de adopciones</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let adoptante of adoptantes">
+                <td>{{ adoptante.id}}</td>
+                <td>{{ adoptante.nombre }}</td>
+                <td>{{ adoptante.direccion }}</td>
+                <td>{{ adoptante.contacto }}</td>
+                <td>{{ adoptante.historial_adopciones }}</td>
+                <td>
+                    <div class="container d-flex">
+                        <div class="row">
+                            <button
+                                class="btn btn-primary col"
+                                (click)="deleteAdoptante(adoptante.id)"
+                            >
+                                Eliminar
+                            </button>
+                            <button
+                                class="btn btn-secondary col"
+                                (click)="editAdoptante(adoptante)"
+                            >
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-5">
+    <h2>
+        {{
+            newAdoptante.id
+                ? "Actualizar adoptante"
+                : "Registrar nuevo adoptante"
+        }}
+    </h2>
+    <form (ngSubmit)="onSubmit()" #adoptanteForm="ngForm">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                required
+                [(ngModel)]="newAdoptante.nombre"
+                name="nombre"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input
+                type="text"
+                class="form-control"
+                id="direccion"
+                required
+                [(ngModel)]="newAdoptante.direccion"
+                name="direccion"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="contacto" class="form-label">Contacto</label>
+            <input
+                type="text"
+                class="form-control"
+                id="contacto"
+                required
+                [(ngModel)]="newAdoptante.contacto"
+                name="contacto"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="historial_adopciones" class="form-label"
+                >Historial de adopciones</label
+            >
+            <textarea
+                class="form-control"
+                id="historial_adopciones"
+                required
+                [(ngModel)]="newAdoptante.historial_adopciones"
+                name="historial_adopciones"
+            ></textarea>
+        </div>
+        <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+            <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="cancelEdit()"
+            >
+                Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">
+                {{ newAdoptante.id ? "Actualizar" : "Registrar" }}
+            </button>
+        </div>
+    </form>
+</div>
